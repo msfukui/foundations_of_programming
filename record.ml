@@ -69,6 +69,7 @@ let person_c = { name = "ちっちゃいの"; tall_m = 1.552; weight_k = 48.3; b
 
 (* 8.4 *)
 (* 目的: person_t 型のデータを受け取り「name さんの血液型は blood_type 型です」という文字列を返す *)
+(* ketsueki_hyoji: person_t -> string *)
 let ketsueki_hyoji person = match person with
   { name = n; tall_m = t; weight_k = w; birthday_month = bm; birthday_day = bd; blood_type = bt } ->
     n ^ "さんの血液型は" ^ bt ^ "型です"
