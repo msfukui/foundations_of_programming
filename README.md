@@ -16,6 +16,8 @@ Computer Science Library 3 プログラミングの基礎 の個人的な学習�
 
     http://www.saiensu.co.jp/
 
+    http://pllab.is.ocha.ac.jp/~asai/book/Top.html
+
 * OCaml の公式ホームページ
 
     http://caml.inria.fr/ocaml/
