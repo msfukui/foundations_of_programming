@@ -90,14 +90,16 @@ let test10_3_5 = gakusei_sort [sample1; sample2] = [sample2; sample1]
 let test10_3_6 = gakusei_sort [sample1; sample2; sample3] = [sample2; sample1; sample3]
 
 (* 10.5 *)
+(* 10.6 *)
 (* 目的 : gakusei_t 型のリストを受け取ったら、最高得点を取った人のレコードを返す *)
 (* gakusei_max : gakusei_t list -> gakusei_t *)
 let rec gakusei_max lst = match lst with
     [] -> {namae = ""; tensuu = min_int; seiseki = ""}
   | first :: rest ->
-      if first.tensuu >= (gakusei_max rest).tensuu
+      let max_gakusei = gakusei_max rest in
+      if first.tensuu >= max_gakusei.tensuu
       then first
-      else gakusei_max rest
+      else max_gakusei
 
 (* テスト *)
 let test10_5_1 = gakusei_max [sample1] = sample1
