@@ -68,11 +68,11 @@ let test10_4_3 = insert_person [person_b; person_a] person_c = [person_c; person
 
 (* 目的 : person_t のリストを受け取り、「挿入法」で name で昇順に整列したリストを返す *)
 (* sort_person : person_t list -> person_t list *)
-let rec sort_person lst = match lst with
+let rec person_sort lst = match lst with
     [] -> []
-  | first :: rest -> insert_person (sort_person rest) first
+  | first :: rest -> insert_person (person_sort rest) first
 
 (* テスト *)
-let test10_4_4 = sort_person [] = []
-let test10_4_5 = sort_person [person_a; person_b] = [person_b; person_a]
-let test10_4_6 = sort_person [person_a; person_b; person_c] = [person_c; person_b; person_a]
+let test10_4_4 = person_sort [] = []
+let test10_4_5 = person_sort [person_a; person_b] = [person_b; person_a]
+let test10_4_6 = person_sort [person_a; person_b; person_c] = [person_c; person_b; person_a]
