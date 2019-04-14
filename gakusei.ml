@@ -105,3 +105,19 @@ let rec gakusei_max lst = match lst with
 let test10_5_1 = gakusei_max [sample1] = sample1
 let test10_5_2 = gakusei_max [sample1; sample2] = sample1
 let test10_5_3 = gakusei_max [sample1; sample2; sample3] = sample3
+
+(* 目的: 学生リスト lst のうち各成績の人数を集計する *)
+(* shukei : gakusei_t list -> int * int * int * int *)
+let rec shukei lst = match lst with
+    [] -> (0, 0, 0, 0)
+  | {namae = n; tensuu = t; seiseki = s} :: rest ->
+      let (a, b, c, d) = shukei rest in
+      if s = "A" then (a + 1, b, c, d)
+      else if s = "B" then (a, b + 1, c, d)
+      else if s = "C" then (a, b, c + 1, d)
+      else (a, b, c, d + 1)
+
+(* テスト *)
+let test_shukei1 = shukei [] = (0, 0, 0, 0)
+let test_shukei2 = shukei [sample1] = (1, 0, 0, 0)
+let test_shukei3 = shukei [sample1; sample2; sample3] = (2, 1, 0, 0)

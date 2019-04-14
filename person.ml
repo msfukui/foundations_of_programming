@@ -76,3 +76,46 @@ let rec person_sort lst = match lst with
 let test10_4_4 = person_sort [] = []
 let test10_4_5 = person_sort [person_a; person_b] = [person_b; person_a]
 let test10_4_6 = person_sort [person_a; person_b; person_c] = [person_c; person_b; person_a]
+
+(* 問題10.7 *)
+(* 目的: 人のリスト lst を受け取ったら描く血液型の人が何人いるかを組にして返す *)
+(* ketsueki_shukei : person_t list -> int * int * int * int *)
+let rec ketsueki_shukei lst = match lst with
+    [] -> (0, 0, 0, 0)
+  | {name = n; tall_m = t; weight_k = w; birthday_month = bm; birthday_day = bd; blood_type = bt} :: rest ->
+      let (a, b, o, ab) = ketsueki_shukei rest in
+      if bt = "A" then (a + 1, b, o, ab)
+      else if bt = "B" then (a, b + 1, o, ab)
+      else if bt = "O" then (a, b, o + 1, ab)
+      else (a, b, o, ab + 1)
+
+(* テスト *)
+let test10_7_1 = ketsueki_shukei [] = (0, 0, 0, 0)
+let test10_7_2 = ketsueki_shukei [person_a] = (0, 1, 0, 0)
+let test10_7_3 = ketsueki_shukei [person_a; person_b; person_c] = (1, 1, 0, 1)
+
+(* 問題10.8 *)
+(* 目的: 人のリスト lst を受け取ったら最も多い血液型を返す *)
+(* saita_ketsueki : person_t list -> string *)
+let saita_ketsueki lst =
+  let (a, b, o, ab) = ketsueki_shukei lst in
+  if a >= b then
+    if a >= o then
+      if a >= ab then "A"
+      else "AB"
+    else if b >= o then
+      if b >= ab then "B"
+      else "AB"
+    else if o >= ab then "O"
+    else "AB"
+  else
+    if b >= o then
+      if b >= ab then "B"
+      else "AB"
+    else if o >= ab then "O"
+    else "AB"
+
+(* テスト *)
+let test10_8_1 = saita_ketsueki [] = "A"
+let test10_8_2 = saita_ketsueki [person_a] = "B"
+let test10_8_3 = saita_ketsueki [person_a; person_b; person_c] = "A"
